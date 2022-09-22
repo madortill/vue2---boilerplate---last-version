@@ -22,7 +22,7 @@ if ($confirmation -eq 'y') {
 
 
   npm i
-  Remove-Item -Path .git -Force -Confirm:$false
+  Remove-Item -Path .git -Force -Recurse:$true
   iu git init
   # make sure there isn't any registered remote
   iu git add -A
