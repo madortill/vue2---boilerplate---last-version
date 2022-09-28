@@ -15,14 +15,8 @@
   }
   Set-Alias iu Invoke-Utility
 
-# make sure the user wants to run the command
-$confirmation = Read-Host "This command will delete all git history. Do it only when you want to create new repository. Are you Sure You Want To Proceed [y/n]"
-if ($confirmation -eq 'y') {
-  (Get-Content ./vite.config.js).replace('<REPO_NANE>', $repoName) | Set-Content ./vite.config.js
-
 
   npm i
-  Remove-Item -Path .git -Force -Recurse:$true
   iu git init
   # make sure there isn't any registered remote
   iu git add -A
