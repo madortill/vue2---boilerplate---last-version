@@ -15,7 +15,8 @@ npm run dev
 1. go to https://github.com and create a new repository
 2. enter Repository Name, choose public and press "create repository"
 3. copy the URL in the light-blue square
-4. **In the terminal run** ./initGit "URL"
+4. ** In the file vite.config.js** replace <REPO_NAME> with your repository name
+5. **In the terminal run** ./initGit "URL"
 
 ## update and deploy an existing repository
 2. **In the terminal, run** ./deploy "COMMIT_MESSAGE"
