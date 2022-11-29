@@ -21,7 +21,9 @@ if ((git remote -v) -ne $null) {
 }
 
 # replace <REPO_NAME> value in vite.config.js
-  (Get-Content ./vite.config.js).Replace('<REPO_NANE>', $repoName) | Set-Content ./vite.config.js
+  $data = Get-Content ".\vite.config.js"
+  $data = $data.Replace("<REPO_NAME>", "$repoName")
+  $data | Out-File -encoding ASCII ".\vite.config.js"
 
   npm i
   iu git init
