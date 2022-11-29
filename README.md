@@ -23,7 +23,7 @@ npm run dev
 3. **IN GITHUB** set gitHub Pages to the branch "gh-pages" instead of "master" when creating a link.
 
 # Reminder!
-_start every static assets' url with "@" (equivalent to src directory), so the assets will appear as they should in final site._
+_**start every static assets' url with "@" (equivalent to src directory), so the assets will appear as they should in final site.**_
 
 
 
