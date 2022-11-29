@@ -2,11 +2,6 @@
   Param ($repoURL = $(throw "repository url parameter is required."))
   $repoName = ((($repoURL -split "/")[4]) -split ("\."))[0]  
   write-output "Your repository name:  $repoName"
-  
- # enter correct repo name to vite.config.js
-  $data = Get-Content ".\vite.config.js"
-  $data = $data.Replace("<REPO_NAME>", "$repoName")
-  $data | Out-File -encoding ASCII ".\vite.config.js"
 
 # catch git errors function
   function Invoke-Utility {
@@ -20,13 +15,19 @@
   }
   Set-Alias iu Invoke-Utility
 
+# check if connected to remote repo
+if ((git remote -v) -ne $null) {
+  Throw "This repository already exists in github! (has a remote)"
+}
+
+# replace <REPO_NAME> value in vite.config.js
+  (Get-Content ./vite.config.js).Replace('<REPO_NANE>', $repoName) | Set-Content ./vite.config.js
 
   npm i
   iu git init
-  # make sure there isn't any registered remote
+  iu git remote add origin $repoURL
   iu git add -A
-  git remote add origin $repoURL
-  git checkout -b master
+  iu git checkout -b master
   iu git commit -m 'first' 
   iu git push -u origin master
   write-output ""
