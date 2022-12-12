@@ -18,7 +18,7 @@ npm run dev
 4. **In the terminal run** ./initGit "URL"
 
 ## update and deploy an existing repository
-2. **In the terminal, run** ./deploy "COMMIT_MESSAGE"
+2. **In the terminal, run** ./deploy.ps1 "COMMIT_MESSAGE"
 3. **IN GITHUB** set gitHub Pages to the branch "gh-pages" instead of "master" when creating a link.
 
 # Reminder! 
