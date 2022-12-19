@@ -16,12 +16,15 @@ iu git checkout master
 iu git add -A
 iu git commit -m $commitMessage
 iu git push
+git subtree pull --prefix=dist origin gh-pages
 npm run build
 iu git add dist -f
 # -m specifies the commit message
-git commit -m 'adding dist subtree' 
+git commit -m 'pushing to dist subtree' 
 #The prefix option specifies the folder that we want for our the subtree. 
 iu git subtree push --prefix dist origin gh-pages
+# iu git branch -B "gh-pages"
+iu git push
 write-host ""
 write-host "deployed to github"
 write-host ""
