@@ -1,51 +1,38 @@
-Param ($commitMessage = $(throw "commit message parameter is required."))
+  # set url parameter
+  Param ($repoURL = $(throw "repository url parameter is required."))
+  $repoName = ((($repoURL -split "/")[4]) -split ("\."))[0]  
+  write-output "Your repository name:  $repoName"
 
-function Invoke-Utility {
-  $exe, $argsForExe = $Args
-  # Workaround: Prevents 2> redirections applied to calls to this function
-  #             from accidentally triggering a terminating error.
-  #             See bug report at https://github.com/PowerShell/PowerShell/issues/4002
-  $ErrorActionPreference = 'Continue'
-  try { & $exe $argsForExe } catch { Throw } # catch is triggered ONLY if $exe can't be found, never for errors reported by $exe itself
-  if ($LASTEXITCODE) { Throw "$exe indicated failure (exit code $LASTEXITCODE; full command: $Args)." }
+# catch git errors function
+  function Invoke-Utility {
+    $exe, $argsForExe = $Args
+    # Workaround: Prevents 2> redirections applied to calls to this function
+    #             from accidentally triggering a terminating error.
+    #             See bug report at https://github.com/PowerShell/PowerShell/issues/4002
+    $ErrorActionPreference = 'Continue'
+    try { & $exe $argsForExe } catch { Throw } # catch is triggered ONLY if $exe can't be found, never for errors reported by $exe itself
+    if ($LASTEXITCODE) { Throw "$exe indicated failure (exit code $LASTEXITCODE; full command: $Args)." }
+  }
+  Set-Alias iu Invoke-Utility
+
+# check if connected to remote repo
+if ((git remote -v) -ne $null) {
+  Throw "This repository already exists in github! (has a remote)"
 }
 
-Set-Alias iu Invoke-Utility
+# replace <REPO_NAME> value in vite.config.js
+  $data = Get-Content ".\vite.config.js"
+  $data = $data.Replace("<REPO_NAME>", "$repoName")
+  $data | Out-File -encoding ASCII ".\vite.config.js"
 
-iu git checkout master
-iu git add -A
-iu git commit -m $commitMessage
-iu git push
-git subtree pull --prefix=dist origin gh-pages
-npm run build
-iu git add dist -f
-# -m specifies the commit message
-git commit -m 'pushing to dist subtree' 
-#The prefix option specifies the folder that we want for our the subtree. 
-iu git subtree push --prefix dist origin gh-pages
-# iu git branch -B "gh-pages"
-iu git push
-write-host ""
-write-host "deployed to github"
-write-host ""
+  npm i
+  iu git init
+  iu git remote add origin $repoURL
+  iu git add -A
+  iu git checkout -b master
+  iu git commit -m 'first' 
+  iu git push -u origin master
+  write-output ""
+  write-output "Repositry initalized"
 
 
-<#
-                                    Invoke Utility 
--------------------------------------------------------------------------------------------------
-.SYNOPSIS
-Invokes an external utility, ensuring successful execution.
-
-.DESCRIPTION
-Invokes an external utility (program) and, if the utility indicates failure by 
-way of a nonzero exit code, throws a script-terminating error.
-
-* Pass the command the way you would execute the command directly.
-* Do NOT use & as the first argument if the executable name is not a literal.
-
-.EXAMPLE
-Invoke-Utility git push
-
-Executes `git push` and throws a script-terminating error if the exit code
-is nonzero.
-#>
