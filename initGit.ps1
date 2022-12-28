@@ -25,19 +25,16 @@ if ((git remote -v) -ne $null) {
   $data = $data.Replace("<REPO_NAME>", "$repoName")
   $data | Out-File -encoding ASCII ".\vite.config.js"
 
+$repoName | export-clixml -path .\temp\repoName.xml
   npm i
   iu git init
   iu git remote add origin $repoURL
   iu git add -A
-  iu git checkout -b master
+  iu git checkout -B master
   iu git commit -m 'first' 
   iu git push -u origin master
-  npm run build
-  iu git add dist -f
-  git commit -m 'adding dist subtree' 
-  #The prefix option specifies the folder that we want for our the subtree. 
-  iu git subtree push --prefix dist origin gh-pages
   write-output ""
   write-output "Repositry initalized"
+
 
 

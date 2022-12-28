@@ -1,9 +1,9 @@
 Param ($commitMessage = $(throw "commit message parameter is required."))
 
-if(test-path .\temp\repoName.xml)
+$repoName = import-clixml -Path .\temp\repoName.xml
+write-output $repoName
+if($repoName -eq $null -or $repoName -eq "")
 {
-    $repoName = import-clixml -Path .\temp\repoName.xml
-} else {
     $repoName = Read-Host -Prompt "Repository URL not found. Please enter repository url to continue or ctrl + C to quit"
 }
 
