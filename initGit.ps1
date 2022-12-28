@@ -25,7 +25,6 @@ if ((git remote -v) -ne $null) {
   $data = $data.Replace("<REPO_NAME>", "$repoName")
   $data | Out-File -encoding ASCII ".\vite.config.js"
 
-$repoName | export-clixml -path .\temp\repoName.xml
   npm i
   iu git init
   iu git remote add origin $repoURL

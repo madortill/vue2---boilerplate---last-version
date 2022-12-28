@@ -1,10 +1,10 @@
 Param ($commitMessage = $(throw "commit message parameter is required."))
 $ErrorActionPreference = "Stop"
-$repoName = import-clixml -Path .\temp\repoName.xml
-write-output $repoName
-if($repoName -eq $null -or $repoName -eq "")
+$repoURL = git remote get-url --push origin
+write-output $repoURL
+if($repoURL -eq $null -or $repoURL -eq "")
 {
-    $repoName = Read-Host -Prompt "Repository URL not found. Please enter repository url to continue or ctrl + C to quit"
+    $repoURL = Read-Host -Prompt "Repository URL not found. Please enter repository url to continue or ctrl + C to quit"
 }
 
 npm run build
@@ -24,7 +24,7 @@ git add -A
 git commit -m $commitMessage
 
 # if you are deploying to https://<USERNAME>.github.io
-git push -f https://github.com/madortill/$repoName.git master:gh-pages
+git push -f $repoURL master:gh-pages
 
 cd ..
 
