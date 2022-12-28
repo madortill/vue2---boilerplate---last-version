@@ -1,5 +1,5 @@
 Param ($commitMessage = $(throw "commit message parameter is required."))
-
+$ErrorActionPreference = "Stop"
 $repoName = import-clixml -Path .\temp\repoName.xml
 write-output $repoName
 if($repoName -eq $null -or $repoName -eq "")
