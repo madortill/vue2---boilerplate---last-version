@@ -5,7 +5,7 @@ Thid is a boilerplate created by the command "npm init@vue2".
 **IMPORTANT! Before first upload - change <REPO_NAME> in `./vite.config.js` to your repository name.**  
 
 *Project Setup - before the first run:*
-run npm install
+run npm install  
 *run for development purposes:*
 npm run dev
 
