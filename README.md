@@ -2,7 +2,7 @@
 This template should help get you started developing with Vue 2 in Vite.  
 It is a boilerplate create by the command "npm init@vue2".
 
-* note: # are for style and have no meaning.
+*\ note: # are for style and have no meaning.
 
 **IMPORTANT! Before first upload - change <REPO_NAME> in `./vite.config.js` to your repository name**  
 *Project Setup - before the first run:*
