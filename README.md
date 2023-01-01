@@ -4,8 +4,10 @@ It is a boilerplate create by the command "npm init@vue2".
 
 * note: # are for style and have no meaning.
 
-### Project Setup - before the first run
+# Before first upload
 **change <REPO_NAME> in ./vite.config.js to your repository name** 
+
+### Project Setup - before the first run
 run npm install
 
 ### run for development purposes
