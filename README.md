@@ -16,7 +16,7 @@ npm run dev
 # Reminder! 
 **start every static assets' url with "@" (equivalent to src directory), so the assets will appear as they should in final site.**
 
-
+<span> tag and set color with CSS, e.g., <span style="color: red;">text</span>
 
 
 
