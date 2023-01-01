@@ -1,4 +1,4 @@
-# Boilerplate
+## Boilerplate Instructions - read before start coding
 This template should help get you started developing with Vue 2 in Vite.  
 Thid is a boilerplate created by the command "npm init@vue2".
 
