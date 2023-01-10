@@ -7,6 +7,8 @@ Thid is a boilerplate created by the command "npm init@vue2".
 *Project Setup - before the first run:* run npm install  
 *run for development purposes:* npm run dev
 
+***
+
 **Tips I found while working:🤩**
 - Start every static assets' url with "@" (equivalent to src directory), so the assets will appear as they should in final site.  
 - In order to register an event listener to native event (like "click") on a component, add native after the event name like `@click.native = "function"`
