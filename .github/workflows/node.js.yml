@@ -30,7 +30,7 @@ jobs:
       - name: Modify vite.config value
         # run: sed -i 's/<REPO_NAME>/$(echo $GITHUB_REPOSITORY | cut -d '/' -f 2)/g' vite.config.js
         run: |
-            echo REPO_NAME
+            echo $REPO_NAME
             sed -n "25 s/<REPO_NAME>/$GITHUB_REPOSITORY/gp" vite.config.js 
         env: 
           REPO_NAME: "$GITHUB_REPOSITORY | cut -d '/' -f 2"
