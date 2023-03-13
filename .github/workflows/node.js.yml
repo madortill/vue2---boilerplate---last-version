@@ -24,7 +24,7 @@ jobs:
   # Build job
   build:
     env:
-      REPO_NAME: "$GITHUB_REPOSITORY | cut -d '/' -f 2"
+      REPO_NAME: $GITHUB_REPOSITORY | cut -d '/' -f 2
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -36,7 +36,7 @@ jobs:
         # env: 
         #   REPO_NAME: "$GITHUB_REPOSITORY | cut -d '/' -f 2"
       - name: Print name
-        run: echo "repo name - $REPO_NAME"
+        run: echo "$REPO_NAME"
       - name: Commit changes
         uses: EndBug/add-and-commit@v7
         with:
