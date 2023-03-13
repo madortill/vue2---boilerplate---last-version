@@ -30,10 +30,12 @@ jobs:
       - name: Modify vite.config value
         # run: sed -i 's/<REPO_NAME>/$(echo $GITHUB_REPOSITORY | cut -d '/' -f 2)/g' vite.config.js
         run: |
-            echo "$REPO_NAME"
-            sed -n "25 s/<REPO_NAME>/$REPO_NAME/gp" vite.config.js 
+            echo "repo name: env.REPO_NAME"
+            sed -n "25 s/<REPO_NAME>/env.REPO_NAME/gp" vite.config.js 
         env: 
           REPO_NAME: "$GITHUB_REPOSITORY | cut -d '/' -f 2"
+      - name: Print name
+        run: echo "repo name - $REPO_NAME"
       - name: Commit changes
         uses: EndBug/add-and-commit@v7
         with:
