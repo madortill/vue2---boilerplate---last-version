@@ -29,14 +29,14 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+      - name: Print name
+        run: echo "env.REPO_NAME"
       - name: Modify vite.config value
         # run: sed -i 's/<REPO_NAME>/$(echo $GITHUB_REPOSITORY | cut -d '/' -f 2)/g' vite.config.js
         run:
             sed -n "25 s/<REPO_NAME>/$REPO_NAME/gp" vite.config.js 
         # env: 
         #   REPO_NAME: "$GITHUB_REPOSITORY | cut -d '/' -f 2"
-      - name: Print name
-        run: echo "env.REPO_NAME"
       - name: Commit changes
         uses: EndBug/add-and-commit@v7
         with:
