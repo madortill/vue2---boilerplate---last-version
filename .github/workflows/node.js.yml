@@ -23,8 +23,18 @@ concurrency:
 jobs:
   # Build job
   build:
+    env:
+      REPO_NAME:  "$github.GITHUB_REPOSITORY | cut -d '/' -f 2"
     runs-on: ubuntu-latest
     steps:
+      - name: Print name
+        run: echo "$REPO_NAME"
+      - name: Modify vite.config value
+        # run: sed -i 's/<REPO_NAME>/$(echo $GITHUB_REPOSITORY | cut -d '/' -f 2)/g' vite.config.js
+        run:
+            sed -n "25 s/<REPO_NAME>/$($github.GITHUB_REPOSITORY | cut -d '/' -f 2)/gp" vite.config.js 
+        # env: 
+        #   REPO_NAME: "$GITHUB_REPOSITORY | cut -d '/' -f 2"
       - name: Checkout
         uses: actions/checkout@v3
       - name: Commit changes
