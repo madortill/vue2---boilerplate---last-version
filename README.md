@@ -4,6 +4,8 @@ Thid is a boilerplate created by the command "npm init vue@2".
 
 **IMPORTANT! Before first upload - change <REPO_NAME> in `./vite.config.js` to your repository name.**  
 
+**Also, go to settings -> pages and change "deploy from branch" to Github "Actions"**
+
 *Project Setup - before the first run:* run npm install  
 *run for development purposes:* npm run dev
 
